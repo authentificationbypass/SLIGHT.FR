@@ -32,7 +32,7 @@ It then rates the result by confidence and shows the relevant evidence for each 
 - Python 3.8 or newer
 - Windows, because the tool uses tkinter for the desktop GUI
 
-Install dependencies:
+## Install dependencies:
 
 pip install -r requirements.txt
 

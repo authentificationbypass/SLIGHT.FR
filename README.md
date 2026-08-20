@@ -1,6 +1,6 @@
 ![Silverlight Site Finder](./assets/pictures/Silverlight-Finder.png)
 
-# Silverlight Site Finder
+# Silverlight Finder
 
 A Python desktop tool for detecting legacy Microsoft Silverlight web applications.
 

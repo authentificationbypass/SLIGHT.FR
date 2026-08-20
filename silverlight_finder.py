@@ -76,6 +76,16 @@ SEARCH_DORKS: List[Tuple[str, str, str]] = [
      "https://www.bing.com/search?q=filetype%3Axap"),
     ("Bing",         '"application/x-silverlight-2"',
      "https://www.bing.com/search?q=%22application%2Fx-silverlight-2%22"),
+    ("Bing",         '"application/x-silverlight-2" site:gov',
+     "https://www.bing.com/search?q=%22application%2Fx-silverlight-2%22+site%3Agov"),
+    ("Bing",         'site:gov "Silverlight.js" OR "application/x-silverlight-2"',
+     "https://www.bing.com/search?q=site%3Agov+%22Silverlight.js%22+OR+%22application%2Fx-silverlight-2%22"),
+    ("Bing",         'site:de OR site:at OR site:ch "Silverlight" (login OR admin)',
+     "https://www.bing.com/search?q=site%3Ade+OR+site%3Aat+OR+site%3Ach+%22Silverlight%22+%28login+OR+admin%29"),
+    ("Bing",         '"Silverlight" intitle:login OR intitle:admin',
+     "https://www.bing.com/search?q=%22Silverlight%22+intitle%3Alogin+OR+intitle%3Aadmin"),
+    ("Bing",         'site:gov "Silverlight" login OR admin',
+     "https://www.bing.com/search?q=site%3Agov+%22Silverlight%22+login+OR+admin"),
     ("Bing",         '"Silverlight.js" site:de',
      "https://www.bing.com/search?q=%22Silverlight.js%22+site%3Ade"),
     ("Bing",         '"silverlightControlHost"',
@@ -88,14 +98,44 @@ SEARCH_DORKS: List[Tuple[str, str, str]] = [
      "https://www.google.com/search?q=filetype:xap"),
     ("Google",       '"application/x-silverlight-2"',
      "https://www.google.com/search?q=%22application%2Fx-silverlight-2%22"),
+    ("Google",       '"application/x-silverlight-2" site:gov',
+     "https://www.google.com/search?q=%22application%2Fx-silverlight-2%22+site%3Agov"),
+    ("Google",       'site:gov "Silverlight" intitle:login OR intitle:admin',
+     "https://www.google.com/search?q=site%3Agov+%22Silverlight%22+intitle%3Alogin+OR+intitle%3Aadmin"),
     ("Google",       '"Silverlight.js"',
      "https://www.google.com/search?q=%22Silverlight.js%22"),
     ("Google",       '"silverlightControlHost" site:de OR site:at OR site:ch',
      "https://www.google.com/search?q=%22silverlightControlHost%22+site%3Ade+OR+site%3Aat+OR+site%3Ach"),
+    ("Google",       '"Silverlight" site:de OR site:at OR site:ch "login" OR "admin"',
+     "https://www.google.com/search?q=%22Silverlight%22+site%3Ade+OR+site%3Aat+OR+site%3Ach+%22login%22+OR+%22admin%22"),
     ("Shodan",       'Silverlight HTTP-Title',
      "https://www.shodan.io/search?query=http.title%3ASilverlight"),
-    ("Wayback Machine", '.xap Archiv-Suche',
+    ("Shodan",       'Silverlight admin login',
+     "https://www.shodan.io/search?query=Silverlight+admin+login"),
+    ("Wayback Machine", 'Silverlight .xap Archiv-Suche',
      "https://web.archive.org/web/*/*.xap"),
+    ("Wayback Machine", 'Legacy Silverlight Seiten in staatlichen Domains',
+     "https://web.archive.org/web/*/https://*/*etype:xap"),
+    ("Google",       '"application/x-silverlight-2"',
+     "https://www.google.com/search?q=%22application%2Fx-silverlight-2%22"),
+    ("Google",       '"application/x-silverlight-2" site:gov',
+     "https://www.google.com/search?q=%22application%2Fx-silverlight-2%22+site%3Agov"),
+    ("Google",       'site:gov "Silverlight" intitle:login OR intitle:admin',
+     "https://www.google.com/search?q=site%3Agov+%22Silverlight%22+intitle%3Alogin+OR+intitle%3Aadmin"),
+    ("Google",       '"Silverlight.js"',
+     "https://www.google.com/search?q=%22Silverlight.js%22"),
+    ("Google",       '"silverlightControlHost" site:de OR site:at OR site:ch',
+     "https://www.google.com/search?q=%22silverlightControlHost%22+site%3Ade+OR+site%3Aat+OR+site%3Ach"),
+    ("Google",       '"Silverlight" site:de OR site:at OR site:ch "login" OR "admin"',
+     "https://www.google.com/search?q=%22Silverlight%22+site%3Ade+OR+site%3Aat+OR+site%3Ach+%22login%22+OR+%22admin%22"),
+    ("Shodan",       'Silverlight HTTP-Title',
+     "https://www.shodan.io/search?query=http.title%3ASilverlight"),
+    ("Shodan",       'Silverlight admin login',
+     "https://www.shodan.io/search?query=Silverlight+admin+login"),
+    ("Wayback Machine", 'Silverlight .xap Archiv-Suche',
+     "https://web.archive.org/web/*/*.xap"),
+    ("Wayback Machine", 'Legacy Silverlight Seiten in staatlichen Domains',
+     "https://web.archive.org/web/*/https://*/*"),
     ("Common Crawl Index", '*.xap CDX-Suche',
      "https://index.commoncrawl.org/CC-MAIN-2020-05-index?url=*.xap&output=json&limit=50"),
 ]
@@ -118,6 +158,36 @@ DISCOVERY_RELEVANCE_TOKENS: List[str] = [
     "createSilverlight",
     "silverlight.isinstalled",
 ]
+
+DEFAULT_SUBDOMAIN_TOKENS: List[str] = [
+    "www", "login", "admin", "portal", "secure", "intranet",
+    "app", "web", "auth", "sso", "legacy", "silverlight",
+    "client", "portaladmin", "reporting", "service", "cms",
+    "internal", "m", "mail", "api", "support", "public",
+]
+
+RELEVANT_PATH_TOKENS: List[str] = [
+    "silverlight", "xap", "clientbin", "login", "admin", "portal",
+    "intranet", "auth", "secure", "default.aspx", "aspx", "reporting",
+    "sso", "legacy", "app", "service"
+]
+
+SECURITY_RELEVANCE_TOKENS: List[str] = [
+    "login", "auth", "sso", "signin", "admin", "portal", "intranet",
+    "secure", "manage", "management", "reporting", "dashboard", "api",
+    "service", "clientbin", "xap", "silverlight", "legacy", "mfa",
+    "oauth", "identity", "support", "secure"
+]
+
+CONTEXT_KEYWORDS = {
+    "auth": ["login", "auth", "sso", "signin", "account", "oauth", "identity"],
+    "admin": ["admin", "administrator", "manage", "management", "backoffice", "cms"],
+    "portal": ["portal", "intranet", "employee", "workspace", "myportal", "company"],
+    "reporting": ["report", "reporting", "dashboard", "bi", "analytics"],
+    "service": ["service", "api", "webservice", "ws", "odata", "rest"],
+    "legacy": ["silverlight", "xap", "clientbin", "legacy", "obsolete"],
+    "public": ["public", "home", "start", "default", "landing"],
+}
 
 # ─── Kern-Scanner ─────────────────────────────────────────────────────────────
 
@@ -184,6 +254,7 @@ class SilverlightScanner:
             "indicators":   [],       # list of (label, confidence)
             "xap_files":    [],
             "title":        "",
+            "context":      {"category": "unknown", "tags": [], "risk": "low", "summary": ""},
             "scanned_at":   datetime.now().isoformat(),
         }
 
@@ -271,6 +342,14 @@ class SilverlightScanner:
             else:
                 result["confidence"] = "low"
 
+        result["context"] = self.contextualize_url(
+            result["final_url"] or result["url"],
+            result.get("title", ""),
+            result.get("indicators", []),
+        )
+        result["context_summary"] = result["context"]["summary"]
+        result["context_tags"] = result["context"]["tags"]
+
         return result
 
     def _make_empty_error(self, url: str, error: str) -> Dict:
@@ -304,9 +383,166 @@ class SilverlightScanner:
                            else self.analyze(clean_url, resp))
         return results
 
+    def _extract_base_domain(self, host: str) -> str:
+        host = (host or "").strip().lower().split(":", 1)[0]
+        if not host:
+            return ""
+        if host.startswith("www."):
+            host = host[4:]
+        parts = host.split(".")
+        if len(parts) >= 2:
+            return ".".join(parts[-2:])
+        return host
+
+    def _load_subdomain_wordlist(self, wordlist_path: Optional[str]) -> List[str]:
+        if not wordlist_path:
+            return DEFAULT_SUBDOMAIN_TOKENS
+        try:
+            with open(wordlist_path, "r", encoding="utf-8", errors="ignore") as fh:
+                words = [line.strip() for line in fh if line.strip()]
+            return words or DEFAULT_SUBDOMAIN_TOKENS
+        except Exception:
+            return DEFAULT_SUBDOMAIN_TOKENS
+
+    def _url_priority(self, url: str, base_netloc: str) -> int:
+        lower = (url or "").lower()
+        parsed = urlparse(lower if "://" in lower else f"https://{lower}")
+        host = (parsed.netloc or "").lower().split(":", 1)[0]
+        base_root = self._extract_base_domain(base_netloc)
+        score = 0
+
+        if lower.startswith(f"https://{base_netloc}") or lower.startswith(f"http://{base_netloc}"):
+            score += 10
+        elif base_root and host.endswith("." + base_root):
+            score += 8
+
+        if any(token in lower for token in RELEVANT_PATH_TOKENS):
+            score += 20
+        if any(token in lower for token in SECURITY_RELEVANCE_TOKENS):
+            score += 18
+        if ".xap" in lower:
+            score += 25
+        if "silverlight" in lower:
+            score += 30
+        if any(token in host for token in ("login", "auth", "admin", "portal", "secure", "sso", "manage", "report")):
+            score += 35
+        if any(token in lower for token in ("login", "admin", "portal", "intranet", "secure", "auth")):
+            score += 15
+        if lower.endswith("/"):
+            score -= 1
+        if any(token in lower for token in ("logout", "signout")):
+            score -= 25
+        return score
+
+    def _generate_subdomain_candidates(self, base_url: str, wordlist_path: Optional[str] = None) -> List[str]:
+        clean = (base_url or "").strip()
+        if not clean:
+            return []
+        if "://" in clean:
+            scheme, rest = clean.split("://", 1)
+            clean = f"{scheme.lower()}://{rest}"
+        else:
+            clean = "https://" + clean
+
+        host = urlparse(clean).netloc.lower().split(":", 1)[0]
+        base_domain = self._extract_base_domain(host)
+        if not base_domain:
+            return []
+
+        words = self._load_subdomain_wordlist(wordlist_path)
+        candidates: List[str] = []
+        seen: Set[str] = set()
+
+        def add_candidate(candidate: str):
+            cleaned = candidate.strip().rstrip("/")
+            if not cleaned:
+                return
+            if not cleaned.startswith("http://") and not cleaned.startswith("https://"):
+                cleaned = "https://" + cleaned
+            if cleaned not in seen:
+                seen.add(cleaned)
+                candidates.append(cleaned)
+
+        for word in words:
+            sub = (word or "").strip().lower()
+            if not sub:
+                continue
+            if "." in sub and sub.endswith(base_domain):
+                add_candidate(sub if sub.startswith(("http://", "https://")) else f"https://{sub}")
+                continue
+            if sub.startswith(("http://", "https://")):
+                add_candidate(sub)
+                continue
+            if sub.startswith("*."):
+                sub = sub[2:]
+            add_candidate(f"https://{sub}.{base_domain}")
+
+        # Sicherheitsrelevante Standardwerte explizit priorisieren
+        for label in ("www", "portal", "login", "admin", "secure", "app", "web", "intranet", "auth", "sso", "legacy", "service", "api", "reporting"):
+            add_candidate(f"https://{label}.{base_domain}")
+
+        return candidates
+
+    def contextualize_url(self, url: str, title: str = "", indicators: Optional[List] = None) -> Dict[str, object]:
+        """Klassifiziert eine URL nach Funktion und Kontext im technischen Umfeld."""
+        text = " " + (url or "") + " " + (title or "") + " " + " ".join(
+            str(x[0] if isinstance(x, tuple) else x) for x in (indicators or [])
+        )
+        text = text.lower()
+
+        matches: List[str] = []
+        for key, words in CONTEXT_KEYWORDS.items():
+            if any(word in text for word in words):
+                matches.append(key)
+
+        if "auth" in matches:
+            category = "identity / auth"
+            risk = "high"
+            summary = "Authentifizierungs- oder Login-Kontext; wahrscheinlich geschützter Bereich."
+        elif "admin" in matches:
+            category = "admin / management"
+            risk = "high"
+            summary = "Administrationsbereich mit hohem Zugriffspotenzial und möglicher Backend-Funktionalität."
+        elif "portal" in matches:
+            category = "portal / intranet"
+            risk = "medium"
+            summary = "Portal- oder Intranet-Kontext mit interner Nutzung und Unternehmensbezug."
+        elif "reporting" in matches:
+            category = "reporting / dashboard"
+            risk = "medium"
+            summary = "Reporting-, Dashboard- oder Analysebereich; typischerweise geschäftskritisch."
+        elif "service" in matches:
+            category = "service / API"
+            risk = "medium"
+            summary = "Service-, API- oder Datenzugriffsbereich mit technischem Backend-Kontext."
+        elif "legacy" in matches:
+            category = "legacy Silverlight app"
+            risk = "high"
+            summary = "Veraltete Silverlight-/XAP-basierte Anwendung mit Legacy- und IE-Mode-Bedeutung."
+        elif "public" in matches:
+            category = "public web surface"
+            risk = "low"
+            summary = "Öffentlich zugängliche Webseite ohne erkennbaren geschützten Login-/Admin-Kontext."
+        else:
+            category = "unknown context"
+            risk = "low"
+            summary = "Kein klarer Kontext erkannt; die Funktion muss durch weiteres Crawling konkretisiert werden."
+
+        tags = sorted(set(matches))
+        if not tags:
+            tags = ["general"]
+
+        return {
+            "category": category,
+            "tags": tags,
+            "risk": risk,
+            "summary": summary,
+        }
+
     # ── Domain crawlen ───────────────────────────────────────────────────────
 
-    def crawl_domain(self, base_url: str, max_pages: int, progress_cb=None) -> List[Dict]:
+    def crawl_domain(self, base_url: str, max_pages: int, progress_cb=None,
+                     wordlist_path: Optional[str] = None) -> List[Dict]:
         clean_base = (base_url or "").strip()
         if not clean_base:
             return []
@@ -317,14 +553,23 @@ class SilverlightScanner:
             clean_base = "https://" + clean_base
 
         base_netloc = urlparse(clean_base).netloc
-        visited:  Set[str]  = set()
-        to_visit: List[str] = [clean_base]
-        to_visit: List[str] = [base_url]
-        results:  List[Dict] = []
+        base_root = self._extract_base_domain(base_netloc)
+        visited: Set[str] = set()
+        queued: Set[str] = set()
+        priority_q: "queue.PriorityQueue" = queue.PriorityQueue()
+
+        candidates = [clean_base] + self._generate_subdomain_candidates(clean_base, wordlist_path=wordlist_path)
+        for candidate in candidates:
+            candidate = candidate.rstrip("/") if candidate.rstrip("/") else candidate
+            if candidate and candidate not in visited and candidate not in queued:
+                priority_q.put((-self._url_priority(candidate, base_netloc), candidate))
+                queued.add(candidate)
+
+        results: List[Dict] = []
         count = 0
 
-        while to_visit and count < max_pages and not self._stop.is_set():
-            url = to_visit.pop(0)
+        while not priority_q.empty() and count < max_pages and not self._stop.is_set():
+            _, url = priority_q.get()
             if url in visited:
                 continue
             visited.add(url)
@@ -341,7 +586,6 @@ class SilverlightScanner:
             r = self.analyze(url, resp)
             results.append(r)
 
-            # Links auf gleicher Domain extrahieren
             if count < max_pages:
                 try:
                     ct = resp.headers.get("content-type", "")
@@ -350,11 +594,20 @@ class SilverlightScanner:
                         for a in soup.find_all("a", href=True):
                             abs_url = urljoin(url, a["href"]).split("#")[0]
                             p = urlparse(abs_url)
-                            if (p.netloc == base_netloc
-                                    and abs_url not in visited
-                                    and abs_url not in to_visit
-                                    and p.scheme in ("http", "https")):
-                                to_visit.append(abs_url)
+                            if p.scheme not in ("http", "https"):
+                                continue
+                            if not p.netloc:
+                                continue
+                            host = p.netloc.lower().split(":", 1)[0]
+                            same_root = (host == base_netloc.lower().split(":", 1)[0]) or (base_root and host.endswith("." + base_root))
+                            if not same_root:
+                                continue
+                            clean_candidate = abs_url.rstrip("/") if abs_url.rstrip("/") else abs_url
+                            if clean_candidate not in visited and clean_candidate not in queued:
+                                priority = self._url_priority(clean_candidate, base_netloc)
+                                if priority >= 0:
+                                    priority_q.put((-priority, clean_candidate))
+                                    queued.add(clean_candidate)
                 except Exception:
                     pass
 
@@ -772,6 +1025,7 @@ class App(tk.Tk):
         self.nb.pack(fill=tk.BOTH, expand=True, padx=8, pady=8)
         self._tab_scanner()
         self._tab_results()
+        self._tab_contextualization()
         self._tab_search()
         self._tab_ie_mode()
 
@@ -828,6 +1082,13 @@ class App(tk.Tk):
         ttk.Label(cframe, text="Max. Seiten:").pack(side=tk.LEFT)
         self._maxpages_var = tk.StringVar(value="30")
         ttk.Entry(cframe, textvariable=self._maxpages_var, width=5).pack(side=tk.LEFT, padx=4)
+
+        wframe = ttk.Frame(left)
+        wframe.pack(fill=tk.X, pady=(0, 8))
+        ttk.Label(wframe, text="Subdomain-Wordlist (optional):").pack(side=tk.LEFT)
+        self._wordlist_var = tk.StringVar(value="")
+        ttk.Entry(wframe, textvariable=self._wordlist_var, width=32).pack(side=tk.LEFT, padx=6)
+        ttk.Button(wframe, text="📂", command=self._pick_wordlist, style="small.TButton").pack(side=tk.LEFT)
 
         # Optionen
         oframe = ttk.Frame(left)
@@ -918,18 +1179,20 @@ class App(tk.Tk):
                   foreground=C["blue"]).pack(side=tk.RIGHT, padx=8)
 
         # Treeview
-        cols = ("conf", "url", "title", "code", "indicators")
+        cols = ("conf", "url", "title", "code", "context", "indicators")
         self._tree = ttk.Treeview(frame, columns=cols, show="headings", selectmode="browse")
         self._tree.heading("conf",       text="Konfidenz",   anchor=tk.CENTER)
         self._tree.heading("url",        text="URL")
         self._tree.heading("title",      text="Seitentitel")
         self._tree.heading("code",       text="HTTP",        anchor=tk.CENTER)
+        self._tree.heading("context",    text="Kontext")
         self._tree.heading("indicators", text="Erkannte Indikatoren")
         self._tree.column("conf",       width=110, anchor=tk.CENTER, stretch=False)
-        self._tree.column("url",        width=330)
-        self._tree.column("title",      width=190)
+        self._tree.column("url",        width=300)
+        self._tree.column("title",      width=180)
         self._tree.column("code",       width=55,  anchor=tk.CENTER, stretch=False)
-        self._tree.column("indicators", width=380)
+        self._tree.column("context",    width=170)
+        self._tree.column("indicators", width=360)
 
         vsb = ttk.Scrollbar(frame, orient=tk.VERTICAL,   command=self._tree.yview)
         hsb = ttk.Scrollbar(frame, orient=tk.HORIZONTAL, command=self._tree.xview)
@@ -956,6 +1219,47 @@ class App(tk.Tk):
     # ═════════════════════════════════════════════════════════════════════════
     # TAB 3 – Web-Suche
     # ═════════════════════════════════════════════════════════════════════════
+
+    def _tab_contextualization(self):
+        frame = ttk.Frame(self.nb)
+        self.nb.add(frame, text="  Kontextualisierung  ")
+
+        ttk.Label(frame, text="Kontextuelle Einordnung der gefundenen Infrastruktur:",
+                  font=("Segoe UI", 10, "bold")).pack(anchor=tk.W, padx=12, pady=(10, 6))
+
+        self._context_text = scrolledtext.ScrolledText(
+            frame, height=22, bg=C["mantle"], fg=C["text"],
+            font=("Consolas", 9), relief=tk.FLAT, borderwidth=4,
+            state=tk.DISABLED,
+        )
+        self._context_text.pack(fill=tk.BOTH, expand=True, padx=12, pady=(0, 10))
+
+        ttk.Button(frame, text="📘  Kontext aktualisieren",
+                   command=self._update_context_view).pack(anchor=tk.W, padx=12)
+
+    def _update_context_view(self):
+        lines: List[str] = []
+        for r in self.results:
+            context = r.get("context") or {}
+            if not context:
+                continue
+            url = r.get("final_url") or r.get("url") or "unknown"
+            title = (r.get("title") or "").strip() or "ohne Titel"
+            category = context.get("category", "unknown context")
+            risk = context.get("risk", "low")
+            tags = ", ".join(context.get("tags", [])) or "general"
+            summary = context.get("summary", "")
+            lines.append(f"[{risk.upper()}] {category}")
+            lines.append(f"URL: {url}")
+            lines.append(f"Titel: {title}")
+            lines.append(f"Tags: {tags}")
+            lines.append(f"Summary: {summary}")
+            lines.append("-" * 80)
+
+        self._context_text.config(state=tk.NORMAL)
+        self._context_text.delete("1.0", tk.END)
+        self._context_text.insert(tk.END, "\n".join(lines) if lines else "Noch keine Kontextualisierung verfügbar.\nScanne zuerst URLs oder Domains.")
+        self._context_text.config(state=tk.DISABLED)
 
     def _tab_search(self):
         frame = ttk.Frame(self.nb)
@@ -1101,6 +1405,14 @@ class App(tk.Tk):
             self._btn_auto_scan.config(state=s_off)
             self._btn_stop.config(state=s_on)
         self.after(0, _do)
+
+    def _pick_wordlist(self):
+        path = filedialog.askopenfilename(
+            title="Subdomain-Wordlist öffnen",
+            filetypes=[("Textdateien", "*.txt"), ("Alle Dateien", "*.*")],
+        )
+        if path:
+            self._wordlist_var.set(path)
 
     def _get_timeout(self) -> int:
         try:
@@ -1275,16 +1587,21 @@ class App(tk.Tk):
         self.scanner.timeout    = self._get_timeout()
         self.scanner.max_crawl  = max_p
         self._set_scanning(True)
-        self._log_msg(f"Starte Crawl: {domain}  (max. {max_p} Seiten)")
-        self.scan_thread = threading.Thread(target=self._run_crawl, args=(domain, max_p), daemon=True)
+        wordlist_path = self._wordlist_var.get().strip() or None
+        self._log_msg(f"Starte Crawl: {domain}  (max. {max_p} Seiten, wordlist={wordlist_path or 'default'})")
+        self.scan_thread = threading.Thread(
+            target=self._run_crawl,
+            args=(domain, max_p, wordlist_path),
+            daemon=True,
+        )
         self.scan_thread.start()
 
-    def _run_crawl(self, domain: str, max_p: int):
+    def _run_crawl(self, domain: str, max_p: int, wordlist_path: Optional[str] = None):
         def _cb(i, total, url):
             self._set_progress(i / total * 100)
             self._set_status(f"Crawle {i}/{total}: {url[:90]}")
             self._log_msg(f"→ {url}")
-        new = self.scanner.crawl_domain(domain, max_p, progress_cb=_cb)
+        new = self.scanner.crawl_domain(domain, max_p, progress_cb=_cb, wordlist_path=wordlist_path)
         self._finish_scan(new)
 
     def _finish_scan(self, new_results: List[Dict]):
@@ -1296,6 +1613,7 @@ class App(tk.Tk):
         self._set_progress(100)
         self._set_scanning(False)
         self.after(0, self._refresh)
+        self.after(0, self._update_context_view)
         if found:
             self.after(0, lambda: self.nb.select(1))
 
@@ -1322,11 +1640,14 @@ class App(tk.Tk):
             )
             if len(inds) > 3:
                 ind_str += f"  (+{len(inds)-3} weitere)"
+            context = r.get("context") or {}
+            context_label = context.get("category", "unknown context")
             self._tree.insert("", tk.END, tags=(conf,), values=(
                 CONF_LABELS.get(conf, "—"),
                 r.get("url", ""),
                 r.get("title", "")[:65],
                 r.get("status_code", ""),
+                context_label,
                 ind_str,
             ))
 

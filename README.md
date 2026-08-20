@@ -1,4 +1,4 @@
-![Silverlight Site Finder](./assets/pictures/Silverlight.png)
+![Silverlight Site Finder](./assets/pictures/Silverlight-Finder.png)
 
 # Silverlight Site Finder
 

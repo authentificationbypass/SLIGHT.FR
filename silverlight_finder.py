@@ -830,7 +830,7 @@ def generate_ie_site_list(urls: List[str]) -> str:
 
 
 def open_in_edge(url: str) -> None:
-    """Öffnet eine URL in Microsoft Edge."""
+    """Open a URL in Microsoft Edge."""
     edge_candidates = [
         r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
         r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
@@ -863,81 +863,81 @@ C = {
 }
 
 CONF_LABELS = {
-    "high":   "★★★  Hoch",
-    "medium": "★★    Mittel",
-    "low":    "★      Niedrig",
-    "none":   "—      Keine",
+    "high":   "★★★  High",
+    "medium": "★★   Medium",
+    "low":    "★    Low",
+    "none":   "—    None",
 }
 
 IE_MODE_INSTRUCTIONS = """\
 ════════════════════════════════════════════════════════
-  SILVERLIGHT MIT EDGE IE-MODUS NUTZEN – SCHRITT FÜR SCHRITT
+  USING SILVERLIGHT IN EDGE IE MODE – STEP BY STEP
 ════════════════════════════════════════════════════════
 
-SCHRITT 1 – SILVERLIGHT INSTALLIEREN
-  Silverlight 5 wird offiziell nicht mehr vertrieben, aber:
-  • Archivkopien über web.archive.org (Schaltfläche unten)
-  • Interne Software-Verteilung (IT-Abteilung)
-  • Hinweis: Silverlight-DLL (npctrl.dll) muss registriert sein
+STEP 1 – INSTALL SILVERLIGHT
+  Silverlight 5 is no longer officially distributed, but:
+  • Archive copies are available via web.archive.org (button below)
+  • Internal software distribution may still be used
+  • Note: the Silverlight DLL (npctrl.dll) must be registered
 
-SCHRITT 2 – IE-MODUS IN EDGE AKTIVIEREN
-  1. Edge öffnen → Einstellungen (⋯ oben rechts)
-  2. → Standardbrowser → Internet Explorer-Kompatibilität
-  3. "Websites in Internet Explorer-Modus neu laden zulassen" → AN
-  4. Edge neu starten
+STEP 2 – ENABLE IE MODE IN EDGE
+  1. Open Edge → Settings (⋯ in the upper-right corner)
+  2. → Default browser → Internet Explorer compatibility
+  3. Enable "Allow sites to be reloaded in Internet Explorer mode"
+  4. Restart Edge
 
-SCHRITT 3 – SEITE IM IE-MODUS ÖFFNEN
-  Methode A – Manuell (einmalig):
-    • Zur Silverlight-Seite navigieren
-    • ⋯ → „In Internet Explorer-Modus neu laden"
-    • Die Seite öffnet sich mit dem IE-Engine (Trident)
+STEP 3 – OPEN THE PAGE IN IE MODE
+  Method A – Manual (one-time):
+    • Navigate to the Silverlight page
+    • ⋯ → "Reload in Internet Explorer mode"
+    • The page opens using the IE engine (Trident)
 
-  Methode B – Dauerhaft über die Kompatibilitätsliste:
-    • edge://settings/defaultBrowser öffnen
-    • Unter „Seiten in Internet Explorer-Modus öffnen"
-      die URL manuell eintragen  ODER
-    • Eine Enterprise Site List XML einbinden (siehe unten)
+  Method B – Persistent via compatibility list:
+    • Open edge://settings/defaultBrowser
+    • Under "Open sites in Internet Explorer mode"
+      enter the URL manually OR
+    • Import an Enterprise Site List XML (see below)
 
-SCHRITT 4 – ENTERPRISE SITE LIST (für IT-Admins)
-  Die XML-Datei (rechts generierbar) kann über:
-  • Group Policy: „InternetExplorerIntegrationSiteList"
+STEP 4 – ENTERPRISE SITE LIST (for IT admins)
+  The XML file (generated on the right) can be applied via:
+  • Group Policy: "InternetExplorerIntegrationSiteList"
   • Registry:
     HKLM\\SOFTWARE\\Policies\\Microsoft\\Edge
     → InternetExplorerIntegrationLevel = 1
     → InternetExplorerIntegrationSiteList = "file:///C:/SiteList.xml"
-  eingebunden werden. Edge lädt die Seiten dann automatisch im IE-Modus.
+  Edge will then automatically load these pages in IE mode.
 
-SCHRITT 5 – SILVERLIGHT-PLUG-IN IM IE-MODUS ÜBERPRÜFEN
-  Im IE-Modus → Extras (Zahnrad) → Add-On-Verwaltung
-  → „Microsoft Silverlight" muss als Aktiviert erscheinen
+STEP 5 – VERIFY THE SILVERLIGHT PLUGIN IN IE MODE
+  In IE mode → Tools (gear icon) → Manage add-ons
+  → "Microsoft Silverlight" must appear as enabled
 ════════════════════════════════════════════════════════
 """
 
 TIPS_TEXT = """\
-TIPPS ZUM AUFFINDEN VON SILVERLIGHT-WEBANWENDUNGEN
+TIPS FOR DISCOVERING SILVERLIGHT WEB APPLICATIONS
 ═══════════════════════════════════════════════════
 
-Typische Einsatzgebiete (2008–2016):
+Common usage areas (2008–2016):
 
-  • HR- & ERP-Systeme     SAP Enterprise Portal, ADP, Sage, Navision-Frontends
-  • Behördenportale       E-Government-Lösungen (vor 2017), Steuerbehörden
-  • Medizin / PACS        Radiologische Bildbetrachtungssysteme (Viewer)
-  • Lernmanagementsysteme Moodle-Plugins, Blackboard, Meridian LMS
-  • GIS-Anwendungen       Kartendienste auf Silverlight-Basis
-  • Finanz-Dashboards     Reporting-Tools, Business Intelligence
-  • Streaming-Dienste     Ältere Netflix-/IIS Smooth Streaming-Clients
+  • HR & ERP systems     SAP Enterprise Portal, ADP, Sage, Navision frontends
+  • Government portals   E-government solutions (pre-2017), tax authorities
+  • Medical / PACS        Radiology viewer systems
+  • Learning platforms    Moodle plugins, Blackboard, Meridian LMS
+  • GIS applications      Map and geospatial services based on Silverlight
+  • Finance dashboards    Reporting and business intelligence tools
+  • Streaming services    Older Netflix / IIS Smooth Streaming clients
 
-Manuelle Erkundung:
-  • robots.txt und sitemap.xml auf .xap-Pfade prüfen
-  • Browser-Dev-Tools → Network → nach .xap filtern
+Manual reconnaissance:
+  • Check robots.txt and sitemap.xml for .xap paths
+  • Browser dev tools → Network → filter for .xap
   • Wayback Machine: web.archive.org/web/*/*.xap
-  • Shodan-Suche: http.title:Silverlight oder http.html:silverlightControlHost
+  • Shodan query: http.title:Silverlight or http.html:silverlightControlHost
 
-Search-Dork-Beispiele:
+Search dork examples:
   • Google:  "application/x-silverlight-2" site:example.com
   • Google:  intitle:"Silverlight" filetype:xap
   • Bing:    url:*.xap
-  • GitHub:  extension:xap filename:.xap (archivierte Projekte)
+  • GitHub:  extension:xap filename:.xap (archived projects)
 """
 
 
@@ -1015,7 +1015,7 @@ class App(tk.Tk):
         bar.pack_propagate(False)
         tk.Label(bar, text=f"  ◈  {APP_TITLE}",
                  bg=C["blue"], fg=C["base"], font=("Segoe UI", 15, "bold")).pack(side=tk.LEFT, padx=14)
-        tk.Label(bar, text="Entdecke und öffne veraltete Silverlight-Webanwendungen",
+        tk.Label(bar, text="Discover and open legacy Silverlight web applications",
                  bg=C["blue"], fg=C["mantle"], font=("Segoe UI", 9)).pack(side=tk.LEFT, padx=2)
 
     # ── Notebook ─────────────────────────────────────────────────────────────
@@ -1029,10 +1029,10 @@ class App(tk.Tk):
         self._tab_search()
         self._tab_ie_mode()
 
-    # ── Statusleiste ─────────────────────────────────────────────────────────
+    # ── Status bar ──────────────────────────────────────────────────────────
 
     def _build_statusbar(self):
-        self._status_var = tk.StringVar(value="Bereit.")
+        self._status_var = tk.StringVar(value="Ready.")
         bar = tk.Frame(self, bg=C["mantle"], height=26)
         bar.pack(fill=tk.X, side=tk.BOTTOM)
         bar.pack_propagate(False)
@@ -1042,11 +1042,11 @@ class App(tk.Tk):
 
     def _warn_deps(self):
         messagebox.showwarning(
-            "Pakete fehlen",
-            "Die folgenden Python-Pakete werden benötigt:\n\n"
+            "Missing packages",
+            "The following Python packages are required:\n\n"
             "    pip install requests beautifulsoup4 lxml\n\n"
-            "Bitte installieren und das Programm neu starten.\n"
-            "(Die Oberfläche ist trotzdem nutzbar, der Scanner funktioniert jedoch nicht.)"
+            "Please install them and restart the application.\n"
+            "(The interface remains usable, but the scanner will not work.)"
         )
 
     # ═════════════════════════════════════════════════════════════════════════
@@ -1057,15 +1057,15 @@ class App(tk.Tk):
         frame = ttk.Frame(self.nb)
         self.nb.add(frame, text="  Scanner  ")
 
-        # ── Obere Hälfte: Input + Log ────────────────────────────────────────
+        # ── Top half: input + log ─────────────────────────────────────────────
         top = ttk.Frame(frame)
         top.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
 
-        # Links: URL-Eingabe
+        # Left: URL input
         left = ttk.Frame(top)
         left.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=(0, 6))
 
-        ttk.Label(left, text="URLs scannen  (eine pro Zeile):").pack(anchor=tk.W)
+        ttk.Label(left, text="Scan URLs (one per line):").pack(anchor=tk.W)
         self._url_input = scrolledtext.ScrolledText(
             left, height=10, bg=C["surface"], fg=C["text"],
             insertbackground=C["text"], font=("Consolas", 10),
@@ -1073,39 +1073,39 @@ class App(tk.Tk):
         )
         self._url_input.pack(fill=tk.BOTH, expand=True, pady=(4, 8))
 
-        # Domain-Crawl-Zeile
+        # Domain crawl row
         cframe = ttk.Frame(left)
         cframe.pack(fill=tk.X, pady=(0, 6))
-        ttk.Label(cframe, text="Domain crawlen:").pack(side=tk.LEFT)
+        ttk.Label(cframe, text="Domain to crawl:").pack(side=tk.LEFT)
         self._crawl_var = tk.StringVar()
         ttk.Entry(cframe, textvariable=self._crawl_var, width=34).pack(side=tk.LEFT, padx=6)
-        ttk.Label(cframe, text="Max. Seiten:").pack(side=tk.LEFT)
+        ttk.Label(cframe, text="Max. pages:").pack(side=tk.LEFT)
         self._maxpages_var = tk.StringVar(value="30")
         ttk.Entry(cframe, textvariable=self._maxpages_var, width=5).pack(side=tk.LEFT, padx=4)
 
         wframe = ttk.Frame(left)
         wframe.pack(fill=tk.X, pady=(0, 8))
-        ttk.Label(wframe, text="Subdomain-Wordlist (optional):").pack(side=tk.LEFT)
+        ttk.Label(wframe, text="Subdomain wordlist (optional):").pack(side=tk.LEFT)
         self._wordlist_var = tk.StringVar(value="")
         ttk.Entry(wframe, textvariable=self._wordlist_var, width=32).pack(side=tk.LEFT, padx=6)
         ttk.Button(wframe, text="📂", command=self._pick_wordlist, style="small.TButton").pack(side=tk.LEFT)
 
-        # Optionen
+        # Options
         oframe = ttk.Frame(left)
         oframe.pack(fill=tk.X, pady=(0, 8))
         self._ssl_var     = tk.BooleanVar(value=False)
         self._timeout_var = tk.StringVar(value="15")
-        ttk.Checkbutton(oframe, text="SSL verifizieren", variable=self._ssl_var).pack(side=tk.LEFT)
+        ttk.Checkbutton(oframe, text="Verify SSL", variable=self._ssl_var).pack(side=tk.LEFT)
         ttk.Label(oframe, text="   Timeout (s):").pack(side=tk.LEFT)
         ttk.Entry(oframe, textvariable=self._timeout_var, width=4).pack(side=tk.LEFT, padx=4)
 
-        # Auto-Discovery
+        # Auto-discovery
         adf = ttk.Frame(left)
         adf.pack(fill=tk.X, pady=(0, 8))
-        ttk.Label(adf, text="Auto-Suche Scope (optional):").pack(side=tk.LEFT)
+        ttk.Label(adf, text="Auto-search scope (optional):").pack(side=tk.LEFT)
         self._disc_scope_var = tk.StringVar(value="")
         ttk.Entry(adf, textvariable=self._disc_scope_var, width=24).pack(side=tk.LEFT, padx=6)
-        ttk.Label(adf, text="Max. Kandidaten:").pack(side=tk.LEFT)
+        ttk.Label(adf, text="Max. candidates:").pack(side=tk.LEFT)
         self._disc_max_var = tk.StringVar(value="40")
         ttk.Entry(adf, textvariable=self._disc_max_var, width=5).pack(side=tk.LEFT, padx=4)
 
@@ -1116,19 +1116,19 @@ class App(tk.Tk):
         ttk.Checkbutton(adf2, text="Bing RSS", variable=self._disc_bing_var).pack(side=tk.LEFT)
         ttk.Checkbutton(adf2, text="Wayback CDX", variable=self._disc_wayback_var).pack(side=tk.LEFT, padx=8)
 
-        # Schaltflächen
+        # Buttons
         bframe = ttk.Frame(left)
         bframe.pack(fill=tk.X)
-        self._btn_scan = ttk.Button(bframe, text="▶  URLs scannen",   command=self._start_url_scan)
-        self._btn_crawl = ttk.Button(bframe, text="🕷  Domain crawlen", command=self._start_crawl)
+        self._btn_scan = ttk.Button(bframe, text="▶  Scan URLs",   command=self._start_url_scan)
+        self._btn_crawl = ttk.Button(bframe, text="🕷  Crawl domain", command=self._start_crawl)
         self._btn_auto_fill = ttk.Button(
-            bframe, text="✨  Adressen finden", command=self._start_auto_discovery_only
+            bframe, text="✨  Find addresses", command=self._start_auto_discovery_only
         )
         self._btn_auto_scan = ttk.Button(
-            bframe, text="🚀  Finden + Scannen", command=self._start_auto_discovery_scan,
+            bframe, text="🚀  Find + Scan", command=self._start_auto_discovery_scan,
             style="success.TButton"
         )
-        self._btn_stop  = ttk.Button(bframe, text="■  Stopp",          command=self._stop_scan,
+        self._btn_stop  = ttk.Button(bframe, text="■  Stop",          command=self._stop_scan,
                                      style="danger.TButton", state=tk.DISABLED)
         self._btn_scan.pack(side=tk.LEFT, padx=(0, 6))
         self._btn_crawl.pack(side=tk.LEFT, padx=(0, 6))
@@ -1136,10 +1136,10 @@ class App(tk.Tk):
         self._btn_auto_scan.pack(side=tk.LEFT, padx=(0, 6))
         self._btn_stop.pack(side=tk.LEFT)
 
-        # Rechts: Log
+        # Right: log
         right = ttk.Frame(top)
         right.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
-        ttk.Label(right, text="Scan-Log:").pack(anchor=tk.W)
+        ttk.Label(right, text="Scan log:").pack(anchor=tk.W)
         self._log = scrolledtext.ScrolledText(
             right, height=18, bg=C["mantle"], fg=C["green"],
             font=("Consolas", 9), relief=tk.FLAT, borderwidth=4,
@@ -1147,46 +1147,46 @@ class App(tk.Tk):
         )
         self._log.pack(fill=tk.BOTH, expand=True, pady=(4, 0))
 
-        # ── Fortschrittsbalken ───────────────────────────────────────────────
+        # ── Progress bar ─────────────────────────────────────────────────────
         self._progress_var = tk.DoubleVar()
         ttk.Progressbar(frame, variable=self._progress_var, maximum=100,
                         style="Horizontal.TProgressbar").pack(fill=tk.X, padx=10, pady=(0, 4))
 
     # ═════════════════════════════════════════════════════════════════════════
-    # TAB 2 – Ergebnisse
+    # TAB 2 – Results
     # ═════════════════════════════════════════════════════════════════════════
 
     def _tab_results(self):
         frame = ttk.Frame(self.nb)
-        self.nb.add(frame, text="  Ergebnisse  ")
+        self.nb.add(frame, text="  Results  ")
 
         # Toolbar
         tb = ttk.Frame(frame)
         tb.pack(fill=tk.X, padx=8, pady=6)
         self._show_all = tk.BooleanVar(value=False)
-        ttk.Checkbutton(tb, text="Alle URLs anzeigen (auch ohne Silverlight)",
+        ttk.Checkbutton(tb, text="Show all URLs (including non-Silverlight)",
                         variable=self._show_all, command=self._refresh).pack(side=tk.LEFT)
-        ttk.Button(tb, text="🔄  Aktualisieren", command=self._refresh,
+        ttk.Button(tb, text="🔄  Refresh", command=self._refresh,
                    style="small.TButton").pack(side=tk.LEFT, padx=6)
         ttk.Button(tb, text="💾  JSON",         command=self._export_json,
                    style="small.TButton").pack(side=tk.LEFT, padx=2)
         ttk.Button(tb, text="💾  CSV",          command=self._export_csv,
                    style="small.TButton").pack(side=tk.LEFT, padx=2)
-        ttk.Button(tb, text="🗑  Löschen",      command=self._clear_results,
+        ttk.Button(tb, text="🗑  Delete",      command=self._clear_results,
                    style="danger.TButton").pack(side=tk.RIGHT, padx=4)
-        self._count_var = tk.StringVar(value="Keine Ergebnisse")
+        self._count_var = tk.StringVar(value="No results")
         ttk.Label(tb, textvariable=self._count_var,
                   foreground=C["blue"]).pack(side=tk.RIGHT, padx=8)
 
         # Treeview
         cols = ("conf", "url", "title", "code", "context", "indicators")
         self._tree = ttk.Treeview(frame, columns=cols, show="headings", selectmode="browse")
-        self._tree.heading("conf",       text="Konfidenz",   anchor=tk.CENTER)
+        self._tree.heading("conf",       text="Confidence",   anchor=tk.CENTER)
         self._tree.heading("url",        text="URL")
-        self._tree.heading("title",      text="Seitentitel")
+        self._tree.heading("title",      text="Page title")
         self._tree.heading("code",       text="HTTP",        anchor=tk.CENTER)
-        self._tree.heading("context",    text="Kontext")
-        self._tree.heading("indicators", text="Erkannte Indikatoren")
+        self._tree.heading("context",    text="Context")
+        self._tree.heading("indicators", text="Detected indicators")
         self._tree.column("conf",       width=110, anchor=tk.CENTER, stretch=False)
         self._tree.column("url",        width=300)
         self._tree.column("title",      width=180)
@@ -1201,30 +1201,30 @@ class App(tk.Tk):
         vsb.pack(side=tk.RIGHT,         fill=tk.Y)
         hsb.pack(side=tk.BOTTOM,        fill=tk.X,    padx=8)
 
-        # Farb-Tags
+        # Color tags
         self._tree.tag_configure("high",   foreground=C["red"])
         self._tree.tag_configure("medium", foreground=C["peach"])
         self._tree.tag_configure("low",    foreground=C["yellow"])
         self._tree.tag_configure("none",   foreground=C["overlay"])
 
-        # Aktionsleiste
+        # Actions
         af = ttk.Frame(frame)
         af.pack(fill=tk.X, padx=8, pady=6)
-        ttk.Button(af, text="🌐  In Edge öffnen",        command=self._open_in_edge).pack(side=tk.LEFT, padx=2)
-        ttk.Button(af, text="📋  URL kopieren",          command=self._copy_url).pack(side=tk.LEFT, padx=2)
-        ttk.Button(af, text="🔍  Details",               command=self._show_details).pack(side=tk.LEFT, padx=2)
-        ttk.Button(af, text="🛡  Für IE-Modus vormerken",
+        ttk.Button(af, text="🌐  Open in Edge",        command=self._open_in_edge).pack(side=tk.LEFT, padx=2)
+        ttk.Button(af, text="📋  Copy URL",            command=self._copy_url).pack(side=tk.LEFT, padx=2)
+        ttk.Button(af, text="🔍  Details",             command=self._show_details).pack(side=tk.LEFT, padx=2)
+        ttk.Button(af, text="🛡  Mark for IE Mode",
                    command=self._mark_ie, style="success.TButton").pack(side=tk.LEFT, padx=6)
 
     # ═════════════════════════════════════════════════════════════════════════
-    # TAB 3 – Web-Suche
+    # TAB 3 – Context
     # ═════════════════════════════════════════════════════════════════════════
 
     def _tab_contextualization(self):
         frame = ttk.Frame(self.nb)
-        self.nb.add(frame, text="  Kontextualisierung  ")
+        self.nb.add(frame, text="  Context  ")
 
-        ttk.Label(frame, text="Kontextuelle Einordnung der gefundenen Infrastruktur:",
+        ttk.Label(frame, text="Contextual classification of the discovered infrastructure:",
                   font=("Segoe UI", 10, "bold")).pack(anchor=tk.W, padx=12, pady=(10, 6))
 
         self._context_text = scrolledtext.ScrolledText(
@@ -1234,7 +1234,7 @@ class App(tk.Tk):
         )
         self._context_text.pack(fill=tk.BOTH, expand=True, padx=12, pady=(0, 10))
 
-        ttk.Button(frame, text="📘  Kontext aktualisieren",
+        ttk.Button(frame, text="📘  Refresh context",
                    command=self._update_context_view).pack(anchor=tk.W, padx=12)
 
     def _update_context_view(self):
@@ -1244,37 +1244,37 @@ class App(tk.Tk):
             if not context:
                 continue
             url = r.get("final_url") or r.get("url") or "unknown"
-            title = (r.get("title") or "").strip() or "ohne Titel"
+            title = (r.get("title") or "").strip() or "untitled"
             category = context.get("category", "unknown context")
             risk = context.get("risk", "low")
             tags = ", ".join(context.get("tags", [])) or "general"
             summary = context.get("summary", "")
             lines.append(f"[{risk.upper()}] {category}")
             lines.append(f"URL: {url}")
-            lines.append(f"Titel: {title}")
+            lines.append(f"Title: {title}")
             lines.append(f"Tags: {tags}")
             lines.append(f"Summary: {summary}")
             lines.append("-" * 80)
 
         self._context_text.config(state=tk.NORMAL)
         self._context_text.delete("1.0", tk.END)
-        self._context_text.insert(tk.END, "\n".join(lines) if lines else "Noch keine Kontextualisierung verfügbar.\nScanne zuerst URLs oder Domains.")
+        self._context_text.insert(tk.END, "\n".join(lines) if lines else "No context available yet.\nScan URLs or domains first.")
         self._context_text.config(state=tk.DISABLED)
 
     def _tab_search(self):
         frame = ttk.Frame(self.nb)
-        self.nb.add(frame, text="  Web-Suche  ")
+        self.nb.add(frame, text="  Web Search  ")
 
         ttk.Label(frame,
-                  text="Vorgefertigte Suchanfragen (Doppelklick oder Schaltfläche zum Öffnen):",
+                  text="Prebuilt search queries (double-click or use the button to open):",
                   font=("Segoe UI", 10, "bold")).pack(anchor=tk.W, padx=12, pady=(10, 4))
 
-        # Dorks-Tabelle
+        # Dorks table
         dcols = ("engine", "dork")
         dtree = ttk.Treeview(frame, columns=dcols, show="headings",
                              height=min(len(SEARCH_DORKS), 14))
         dtree.heading("engine", text="Engine",       anchor=tk.CENTER)
-        dtree.heading("dork",   text="Suchanfrage / Dork")
+        dtree.heading("dork",   text="Search query / dork")
         dtree.column("engine",  width=130, anchor=tk.CENTER, stretch=False)
         dtree.column("dork",    width=600)
 
@@ -1290,13 +1290,13 @@ class App(tk.Tk):
 
         btn_f = ttk.Frame(frame)
         btn_f.pack(fill=tk.X, padx=12, pady=4)
-        ttk.Button(btn_f, text="Ausgewählte Suche im Browser öffnen →",
+        ttk.Button(btn_f, text="Open selected search in browser →",
                    command=lambda: self._open_dork(dtree)).pack(side=tk.LEFT)
 
         ttk.Separator(frame, orient=tk.HORIZONTAL).pack(fill=tk.X, padx=12, pady=10)
 
-        # Eigene Suche
-        ttk.Label(frame, text="Eigene Suche:", font=("Segoe UI", 10, "bold")).pack(anchor=tk.W, padx=12)
+        # Custom search
+        ttk.Label(frame, text="Custom search:", font=("Segoe UI", 10, "bold")).pack(anchor=tk.W, padx=12)
         cf = ttk.Frame(frame)
         cf.pack(fill=tk.X, padx=12, pady=4)
         self._custom_search = tk.StringVar()
@@ -1310,7 +1310,7 @@ class App(tk.Tk):
 
         ttk.Separator(frame, orient=tk.HORIZONTAL).pack(fill=tk.X, padx=12, pady=10)
 
-        # Tipps
+        # Tips
         tips = scrolledtext.ScrolledText(
             frame, height=14, bg=C["mantle"], fg=C["text"],
             font=("Consolas", 9), relief=tk.FLAT, borderwidth=4,
@@ -1320,14 +1320,14 @@ class App(tk.Tk):
         tips.config(state=tk.DISABLED)
 
     # ═════════════════════════════════════════════════════════════════════════
-    # TAB 4 – IE-Modus
+    # TAB 4 – IE Mode
     # ═════════════════════════════════════════════════════════════════════════
 
     def _tab_ie_mode(self):
         frame = ttk.Frame(self.nb)
-        self.nb.add(frame, text="  IE-Modus  ")
+        self.nb.add(frame, text="  IE Mode  ")
 
-        # Anleitung
+        # Instructions
         instr = scrolledtext.ScrolledText(
             frame, height=16, bg=C["mantle"], fg=C["text"],
             font=("Consolas", 9), relief=tk.FLAT, borderwidth=4,
@@ -1338,8 +1338,8 @@ class App(tk.Tk):
 
         ttk.Separator(frame, orient=tk.HORIZONTAL).pack(fill=tk.X, padx=12, pady=6)
 
-        # IE-Modus-URLs
-        ttk.Label(frame, text="Für IE-Modus vorgemerkte URLs:",
+        # IE Mode URLs
+        ttk.Label(frame, text="URLs bookmarked for IE Mode:",
                   font=("Segoe UI", 10, "bold")).pack(anchor=tk.W, padx=12)
         self._ie_urls = scrolledtext.ScrolledText(
             frame, height=5, bg=C["surface"], fg=C["text"],
@@ -1348,21 +1348,21 @@ class App(tk.Tk):
         )
         self._ie_urls.pack(fill=tk.X, padx=12, pady=4)
 
-        # Schaltflächen
+        # Buttons
         bf = ttk.Frame(frame)
         bf.pack(fill=tk.X, padx=12, pady=4)
-        ttk.Button(bf, text="📄  Site List XML generieren",
+        ttk.Button(bf, text="📄  Generate Site List XML",
                    command=self._gen_xml).pack(side=tk.LEFT, padx=(0, 6))
-        ttk.Button(bf, text="⚙  Edge-Einstellungen öffnen",
+        ttk.Button(bf, text="⚙  Open Edge settings",
                    command=lambda: open_in_edge("edge://settings/defaultBrowser"),
                    style="small.TButton").pack(side=tk.LEFT, padx=2)
-        ttk.Button(bf, text="📥  Silverlight-Archiv (Wayback)",
+        ttk.Button(bf, text="📥  Silverlight archive (Wayback)",
                    command=lambda: webbrowser.open(
                        "https://web.archive.org/web/2019*/https://www.microsoft.com/silverlight/"
                    ), style="small.TButton").pack(side=tk.LEFT, padx=2)
 
-        # XML-Ausgabe
-        ttk.Label(frame, text="Generierte Enterprise Mode Site List XML:").pack(anchor=tk.W, padx=12, pady=(8, 2))
+        # XML output
+        ttk.Label(frame, text="Generated Enterprise Mode Site List XML:").pack(anchor=tk.W, padx=12, pady=(8, 2))
         self._xml_out = scrolledtext.ScrolledText(
             frame, height=8, bg=C["mantle"], fg=C["green"],
             font=("Consolas", 9), relief=tk.FLAT, borderwidth=4,
@@ -1372,8 +1372,8 @@ class App(tk.Tk):
 
         xbf = ttk.Frame(frame)
         xbf.pack(fill=tk.X, padx=12, pady=(0, 8))
-        ttk.Button(xbf, text="💾  XML speichern", command=self._save_xml).pack(side=tk.LEFT, padx=(0, 6))
-        ttk.Button(xbf, text="📋  Kopieren",      command=self._copy_xml,
+        ttk.Button(xbf, text="💾  Save XML", command=self._save_xml).pack(side=tk.LEFT, padx=(0, 6))
+        ttk.Button(xbf, text="📋  Copy",      command=self._copy_xml,
                    style="small.TButton").pack(side=tk.LEFT)
 
     # ═════════════════════════════════════════════════════════════════════════
@@ -1408,8 +1408,8 @@ class App(tk.Tk):
 
     def _pick_wordlist(self):
         path = filedialog.askopenfilename(
-            title="Subdomain-Wordlist öffnen",
-            filetypes=[("Textdateien", "*.txt"), ("Alle Dateien", "*.*")],
+            title="Open subdomain wordlist",
+            filetypes=[("Text files", "*.txt"), ("All files", "*.*")],
         )
         if path:
             self._wordlist_var.set(path)
@@ -1422,17 +1422,17 @@ class App(tk.Tk):
 
     def _start_url_scan(self):
         if not DEPS_OK:
-            messagebox.showerror("Fehler", "Pakete nicht installiert:\npip install requests beautifulsoup4 lxml")
+            messagebox.showerror("Error", "Packages not installed:\npip install requests beautifulsoup4 lxml")
             return
         urls = [u.strip() for u in self._url_input.get("1.0", tk.END).splitlines() if u.strip()]
         if not urls:
-            messagebox.showwarning("Hinweis", "Bitte mindestens eine URL eingeben.")
+            messagebox.showwarning("Notice", "Please enter at least one URL.")
             return
         self.scanner.reset()
         self.scanner.verify_ssl = self._ssl_var.get()
         self.scanner.timeout    = self._get_timeout()
         self._set_scanning(True)
-        self._log_msg(f"Starte URL-Scan: {len(urls)} Einträge")
+        self._log_msg(f"Starting URL scan: {len(urls)} entries")
         self.scan_thread = threading.Thread(target=self._run_url_scan, args=(urls,), daemon=True)
         self.scan_thread.start()
 
@@ -1444,10 +1444,10 @@ class App(tk.Tk):
 
     def _start_auto_discovery_only(self):
         if not DEPS_OK:
-            messagebox.showerror("Fehler", "Pakete nicht installiert:\npip install requests beautifulsoup4 lxml")
+            messagebox.showerror("Error", "Packages not installed:\npip install requests beautifulsoup4 lxml")
             return
         if not self._disc_bing_var.get() and not self._disc_wayback_var.get():
-            messagebox.showwarning("Hinweis", "Bitte mindestens eine Quelle aktivieren (Bing RSS oder Wayback CDX).")
+            messagebox.showwarning("Notice", "Please enable at least one source (Bing RSS or Wayback CDX).")
             return
 
         self.scanner.reset()
@@ -1458,7 +1458,7 @@ class App(tk.Tk):
 
         scope = self._disc_scope_var.get().strip()
         limit = self._get_discovery_limit()
-        self._log_msg(f"Starte Auto-Suche: scope='{scope or 'global'}', limit={limit}")
+        self._log_msg(f"Starting auto-discovery: scope='{scope or 'global'}', limit={limit}")
 
         self.scan_thread = threading.Thread(
             target=self._run_auto_discovery,
@@ -1469,10 +1469,10 @@ class App(tk.Tk):
 
     def _start_auto_discovery_scan(self):
         if not DEPS_OK:
-            messagebox.showerror("Fehler", "Pakete nicht installiert:\npip install requests beautifulsoup4 lxml")
+            messagebox.showerror("Error", "Packages not installed:\npip install requests beautifulsoup4 lxml")
             return
         if not self._disc_bing_var.get() and not self._disc_wayback_var.get():
-            messagebox.showwarning("Hinweis", "Bitte mindestens eine Quelle aktivieren (Bing RSS oder Wayback CDX).")
+            messagebox.showwarning("Notice", "Please enable at least one source (Bing RSS or Wayback CDX).")
             return
 
         self.scanner.reset()
@@ -1483,7 +1483,7 @@ class App(tk.Tk):
 
         scope = self._disc_scope_var.get().strip()
         limit = self._get_discovery_limit()
-        self._log_msg(f"Starte Auto-Suche + Scan: scope='{scope or 'global'}', limit={limit}")
+        self._log_msg(f"Starting auto-discovery + scan: scope='{scope or 'global'}', limit={limit}")
 
         self.scan_thread = threading.Thread(
             target=self._run_auto_discovery,
@@ -1505,7 +1505,7 @@ class App(tk.Tk):
 
     def _run_auto_discovery(self, scope: str, limit: int, scan_after: bool):
         def _dcb(i, total, msg):
-            self._set_status(f"Suche {i}/{total}: {msg[:80]}")
+            self._set_status(f"Search {i}/{total}: {msg[:80]}")
             if total > 0:
                 self._set_progress(i / total * 30)
 
@@ -1518,24 +1518,24 @@ class App(tk.Tk):
         )
 
         if self.scanner._stop.is_set():
-            self._log_msg("⏹  Auto-Suche gestoppt.")
+            self._log_msg("⏹  Auto-discovery stopped.")
             self._set_scanning(False)
-            self._set_status("Gestoppt.")
+            self._set_status("Stopped.")
             return
 
         self._set_url_input(discovered, append=True)
-        self._log_msg(f"Auto-Suche abgeschlossen: {len(discovered)} Kandidaten gefunden.")
+        self._log_msg(f"Auto-discovery completed: {len(discovered)} candidates found.")
 
         if not scan_after:
             self._set_progress(100)
             self._set_scanning(False)
-            self._set_status(f"Auto-Suche fertig: {len(discovered)} Kandidaten gefunden.")
+            self._set_status(f"Auto-discovery finished: {len(discovered)} candidates found.")
             return
 
         if not discovered:
             self._set_progress(100)
             self._set_scanning(False)
-            self._set_status("Keine Kandidaten für Scan gefunden.")
+            self._set_status("No candidates found for scanning.")
             return
 
         known = {
@@ -1548,15 +1548,15 @@ class App(tk.Tk):
         if not to_scan:
             self._set_progress(100)
             self._set_scanning(False)
-            self._set_status("Alle gefundenen Kandidaten wurden bereits gescannt.")
-            self._log_msg("Keine neuen URLs für Scan übrig (bereits vorhanden).")
+            self._set_status("All discovered candidates were already scanned.")
+            self._log_msg("No new URLs left to scan (already present).")
             return
 
-        self._log_msg(f"Starte Scan der gefundenen Kandidaten: {len(to_scan)} URLs")
+        self._log_msg(f"Starting scan of discovered candidates: {len(to_scan)} URLs")
 
         def _scb(i, total, url):
             self._set_progress(30 + (i / total * 70))
-            self._set_status(f"Scanne {i}/{total}: {url[:90]}")
+            self._set_status(f"Scanning {i}/{total}: {url[:90]}")
             self._log_msg(f"→ {url}")
 
         new = self.scanner.scan_urls(to_scan, progress_cb=_scb)
@@ -1565,18 +1565,18 @@ class App(tk.Tk):
     def _run_url_scan(self, urls: List[str]):
         def _cb(i, total, url):
             self._set_progress(i / total * 100)
-            self._set_status(f"Scanne {i}/{total}: {url[:90]}")
+            self._set_status(f"Scanning {i}/{total}: {url[:90]}")
             self._log_msg(f"→ {url}")
         new = self.scanner.scan_urls(urls, progress_cb=_cb)
         self._finish_scan(new)
 
     def _start_crawl(self):
         if not DEPS_OK:
-            messagebox.showerror("Fehler", "Pakete nicht installiert:\npip install requests beautifulsoup4 lxml")
+            messagebox.showerror("Error", "Packages not installed:\npip install requests beautifulsoup4 lxml")
             return
         domain = self._crawl_var.get().strip()
         if not domain:
-            messagebox.showwarning("Hinweis", "Bitte eine Domain zum Crawlen eingeben.")
+            messagebox.showwarning("Notice", "Please enter a domain to crawl.")
             return
         try:
             max_p = max(1, int(self._maxpages_var.get()))
@@ -1588,7 +1588,7 @@ class App(tk.Tk):
         self.scanner.max_crawl  = max_p
         self._set_scanning(True)
         wordlist_path = self._wordlist_var.get().strip() or None
-        self._log_msg(f"Starte Crawl: {domain}  (max. {max_p} Seiten, wordlist={wordlist_path or 'default'})")
+        self._log_msg(f"Starting crawl: {domain}  (max. {max_p} pages, wordlist={wordlist_path or 'default'})")
         self.scan_thread = threading.Thread(
             target=self._run_crawl,
             args=(domain, max_p, wordlist_path),
@@ -1599,7 +1599,7 @@ class App(tk.Tk):
     def _run_crawl(self, domain: str, max_p: int, wordlist_path: Optional[str] = None):
         def _cb(i, total, url):
             self._set_progress(i / total * 100)
-            self._set_status(f"Crawle {i}/{total}: {url[:90]}")
+            self._set_status(f"Crawling {i}/{total}: {url[:90]}")
             self._log_msg(f"→ {url}")
         new = self.scanner.crawl_domain(domain, max_p, progress_cb=_cb, wordlist_path=wordlist_path)
         self._finish_scan(new)
@@ -1608,8 +1608,8 @@ class App(tk.Tk):
         self.results.extend(new_results)
         found = sum(1 for r in new_results if r.get("found"))
         total = len(new_results)
-        self._log_msg(f"✔  Fertig – {total} URLs geprüft, {found} mit Silverlight erkannt.")
-        self._set_status(f"Abgeschlossen: {found}/{total} Silverlight-Seiten gefunden.")
+        self._log_msg(f"✔  Finished – {total} URLs checked, {found} Silverlight matches detected.")
+        self._set_status(f"Completed: {found}/{total} Silverlight pages found.")
         self._set_progress(100)
         self._set_scanning(False)
         self.after(0, self._refresh)
@@ -1619,7 +1619,7 @@ class App(tk.Tk):
 
     def _stop_scan(self):
         self.scanner.stop()
-        self._log_msg("⏹  Stopp angefordert …")
+        self._log_msg("⏹  Stop requested …")
 
     # ═════════════════════════════════════════════════════════════════════════
     # Ergebnisse-Logik
@@ -1652,7 +1652,7 @@ class App(tk.Tk):
             ))
 
         found = sum(1 for r in display if r.get("found"))
-        self._count_var.set(f"{found} Silverlight-Seiten  |  {len(display)} gesamt")
+        self._count_var.set(f"{found} Silverlight pages  |  {len(display)} total")
 
     def _selected(self) -> Optional[Dict]:
         sel = self._tree.selection()
@@ -1669,7 +1669,7 @@ class App(tk.Tk):
         if r:
             open_in_edge(r.get("final_url") or r.get("url", ""))
         else:
-            messagebox.showinfo("Hinweis", "Bitte eine URL in der Liste auswählen.")
+            messagebox.showinfo("Notice", "Please select a URL from the list.")
 
     def _copy_url(self):
         r = self._selected()
@@ -1681,7 +1681,7 @@ class App(tk.Tk):
     def _show_details(self):
         r = self._selected()
         if not r:
-            messagebox.showinfo("Hinweis", "Bitte eine URL auswählen.")
+            messagebox.showinfo("Notice", "Please select a URL.")
             return
 
         win = tk.Toplevel(self)
@@ -1698,24 +1698,24 @@ class App(tk.Tk):
         lines = [
             f"URL            {r.get('url','')}",
             f"Final URL      {r.get('final_url','')}",
-            f"HTTP-Status    {r.get('status_code','')}",
-            f"Silverlight    {'✔  JA' if r.get('found') else '✘  NEIN'}",
-            f"Konfidenz      {r.get('confidence','none').upper()}",
-            f"Seitentitel    {r.get('title','')}",
-            f"Gescannt am    {r.get('scanned_at','')}",
+            f"HTTP status    {r.get('status_code','')}",
+            f"Silverlight    {'✔  YES' if r.get('found') else '✘  NO'}",
+            f"Confidence     {r.get('confidence','none').upper()}",
+            f"Page title     {r.get('title','')}",
+            f"Scanned at     {r.get('scanned_at','')}",
             "",
-            "─── Erkannte Indikatoren " + "─" * 44,
+            "─── Detected indicators " + "─" * 40,
         ]
         for ind in r.get("indicators", []):
             label, conf = ind if isinstance(ind, tuple) else (str(ind), "?")
             lines.append(f"  [{conf.upper():6}]  {label}")
 
         if r.get("xap_files"):
-            lines += ["", "─── .xap-Dateien " + "─" * 52]
+            lines += ["", "─── .xap files " + "─" * 56]
             lines += [f"  {x}" for x in r["xap_files"]]
 
         if r.get("error"):
-            lines += ["", "─── Fehler " + "─" * 58, f"  {r['error']}"]
+            lines += ["", "─── Error " + "─" * 60, f"  {r['error']}"]
 
         txt.insert(tk.END, "\n".join(lines))
         txt.config(state=tk.DISABLED)
@@ -1723,7 +1723,7 @@ class App(tk.Tk):
     def _mark_ie(self):
         r = self._selected()
         if not r:
-            messagebox.showinfo("Hinweis", "Bitte eine URL auswählen.")
+            messagebox.showinfo("Notice", "Please select a URL.")
             return
         url = r.get("final_url") or r.get("url", "")
         if url and url not in self._ie_urls.get("1.0", tk.END):
@@ -1731,13 +1731,13 @@ class App(tk.Tk):
         self.nb.select(3)
 
     def _clear_results(self):
-        if messagebox.askyesno("Bestätigen", "Alle Scanergebnisse löschen?"):
+        if messagebox.askyesno("Confirm", "Delete all scan results?"):
             self.results.clear()
             self._refresh()
 
     def _export_json(self):
         if not self.results:
-            messagebox.showinfo("Hinweis", "Keine Ergebnisse vorhanden.")
+            messagebox.showinfo("Notice", "No results available.")
             return
         path = filedialog.asksaveasfilename(
             defaultextension=".json", filetypes=[("JSON", "*.json")],
@@ -1756,11 +1756,11 @@ class App(tk.Tk):
             ]
         with open(path, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
-        messagebox.showinfo("Gespeichert", f"JSON gespeichert:\n{path}")
+        messagebox.showinfo("Saved", f"JSON saved:\n{path}")
 
     def _export_csv(self):
         if not self.results:
-            messagebox.showinfo("Hinweis", "Keine Ergebnisse vorhanden.")
+            messagebox.showinfo("Notice", "No results available.")
             return
         path = filedialog.asksaveasfilename(
             defaultextension=".csv", filetypes=[("CSV", "*.csv")],
@@ -1773,7 +1773,7 @@ class App(tk.Tk):
             writer = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
             writer.writeheader()
             writer.writerows(self.results)
-        messagebox.showinfo("Gespeichert", f"CSV gespeichert:\n{path}")
+        messagebox.showinfo("Saved", f"CSV saved:\n{path}")
 
     # ═════════════════════════════════════════════════════════════════════════
     # IE-Modus-Logik
@@ -1783,7 +1783,7 @@ class App(tk.Tk):
         raw  = self._ie_urls.get("1.0", tk.END).strip()
         urls = [u.strip() for u in raw.splitlines() if u.strip()]
         if not urls:
-            messagebox.showwarning("Hinweis", "Keine URLs in der IE-Modus-Liste vorhanden.")
+            messagebox.showwarning("Notice", "No URLs are present in the IE Mode list.")
             return
         xml = generate_ie_site_list(urls)
         self._xml_out.config(state=tk.NORMAL)
@@ -1794,7 +1794,7 @@ class App(tk.Tk):
     def _save_xml(self):
         xml = self._xml_out.get("1.0", tk.END).strip()
         if not xml:
-            messagebox.showwarning("Hinweis", "Bitte erst eine Site List generieren.")
+            messagebox.showwarning("Notice", "Please generate a Site List first.")
             return
         path = filedialog.asksaveasfilename(
             defaultextension=".xml", filetypes=[("XML", "*.xml")],
@@ -1803,7 +1803,7 @@ class App(tk.Tk):
         if path:
             with open(path, "w", encoding="utf-8") as f:
                 f.write(xml)
-            messagebox.showinfo("Gespeichert", f"XML gespeichert:\n{path}")
+            messagebox.showinfo("Saved", f"XML saved:\n{path}")
 
     def _copy_xml(self):
         xml = self._xml_out.get("1.0", tk.END).strip()

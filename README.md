@@ -5,8 +5,6 @@
 <div align="center">
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
-![Platform](https://img.shields.io/badge/Platform-Windows-0078D6)
-![License](https://img.shields.io/badge/License-Project%20Use%20Only-lightgrey)
 
 A desktop tool for identifying legacy Microsoft Silverlight applications and web pages.
 

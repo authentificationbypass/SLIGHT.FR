@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 ╔══════════════════════════════════════════════════════════════════╗
-║              S I L V E R L I G H T   S I T E   F I N D E R     ║
-║  Entdeckt veraltete Silverlight-Webanwendungen und hilft dabei, ║
+║              S I L V E R L I G H T   S I T E   F I N D E R       ║
+║  Entdeckt veraltete Silverlight-Webanwendungen und hilft dabei,  ║
 ║  diese über den IE-Modus von Microsoft Edge zugänglich zu machen ║
 ╚══════════════════════════════════════════════════════════════════╝
 

@@ -1,49 +1,64 @@
 ![Silverlight Site Finder](./assets/pictures/Silverlight-Finder.png)
 
-# Silverlight Finder
+# Silverlight Site Finder
 
-A Python desktop tool for detecting legacy Microsoft Silverlight web applications.
+<div align="center">
 
-## What it does
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
+![Platform](https://img.shields.io/badge/Platform-Windows-0078D6)
+![License](https://img.shields.io/badge/License-Project%20Use%20Only-lightgrey)
 
-The tool helps identify Silverlight-based pages and applications by scanning single URLs, crawling a domain, or searching for known Silverlight indicators such as:
+A desktop tool for identifying legacy Microsoft Silverlight applications and web pages.
+
+</div>
+
+## Overview
+
+Silverlight Site Finder helps locate Silverlight-based applications by scanning individual URLs, crawling domains, and checking for commonly used Silverlight indicators such as:
 
 - .xap file references
 - application/x-silverlight MIME types
 - Silverlight.js includes
-- object and embed tags
-- JavaScript patterns used by Silverlight apps
+- object/embed tags
+- JavaScript patterns used by legacy Silverlight apps
 
-It then rates the result by confidence and shows the relevant evidence for each finding.
+Each result is assigned a confidence level and includes evidence collected during the scan.
 
 ## Features
 
-- Scan single URLs
-- Crawl a complete domain
+- Scan a single URL or crawl a whole domain
 - Search for likely Silverlight candidates using common discovery queries
-- Highlight results by confidence level
-- Inspect detailed indicators per match
-- Export results as JSON or CSV
-- Open common web-search dorks directly in a browser
-- Generate XML for Edge IE Mode compatibility settings
+- Rank findings by confidence level
+- Inspect the evidence behind every result
+- Export findings as JSON or CSV
+- Open useful search dorks in a browser
+- Generate XML for Microsoft Edge IE Mode compatibility
 
 ## Requirements
 
 - Python 3.8 or newer
-- Windows, because the tool uses tkinter for the desktop GUI
+- Windows (the app uses `tkinter` for the desktop GUI)
 
-## Install dependencies:
+## Installation
 
+```bash
 pip install -r requirements.txt
+```
 
-## Run
+## Usage
 
+```bash
 python silverlight_finder.py
+```
 
-## Notes
+## Typical use cases
 
-This project is intended for legitimate security assessments, IT audits, and compatibility work on systems you own or are authorized to test.
+- Legacy application inventory
+- Security assessments and architecture reviews
+- Compatibility and modernization planning
+- Discovery of old Silverlight dependencies in internal or external systems
 
-## Disclaimer
+## Important notes
 
-Use only in environments where you have permission to scan and analyze the target systems.
+Because some legacy systems still think Silverlight is the future, this tool is here to help you spot the dinosaurs before they bite back.
+

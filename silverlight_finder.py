@@ -172,6 +172,26 @@ RELEVANT_PATH_TOKENS: List[str] = [
     "sso", "legacy", "app", "service"
 ]
 
+MULTI_PART_TLDS: Set[str] = {
+    "ac.uk", "co.uk", "gov.uk", "org.uk", "net.uk", "sch.uk",
+    "com.au", "net.au", "org.au", "edu.au", "gov.au",
+    "com.br", "net.br", "org.br", "gov.br", "edu.br",
+    "com.ar", "org.ar", "gov.ar", "net.ar",
+    "com.mx", "org.mx", "net.mx", "gov.mx",
+    "com.tr", "org.tr", "net.tr", "gov.tr",
+    "com.cn", "net.cn", "org.cn", "gov.cn",
+    "com.sg", "net.sg", "org.sg", "gov.sg",
+    "com.my", "net.my", "org.my", "gov.my",
+    "co.in", "com.in", "org.in", "net.in", "gov.in",
+    "co.nz", "com.nz", "org.nz", "net.nz",
+    "co.jp", "com.jp", "org.jp", "net.jp",
+    "co.za", "org.za", "net.za", "gov.za",
+    "com.pk", "net.pk", "org.pk", "gov.pk",
+    "co.id", "com.id", "org.id", "net.id",
+    "com.tw", "net.tw", "org.tw",
+    "co.kr", "com.kr", "org.kr", "net.kr",
+}
+
 SECURITY_RELEVANCE_TOKENS: List[str] = [
     "login", "auth", "sso", "signin", "admin", "portal", "intranet",
     "secure", "manage", "management", "reporting", "dashboard", "api",
@@ -389,7 +409,17 @@ class SilverlightScanner:
             return ""
         if host.startswith("www."):
             host = host[4:]
-        parts = host.split(".")
+        if host.startswith("."):
+            host = host.lstrip(".")
+
+        parts = [p for p in host.split(".") if p]
+        if len(parts) <= 1:
+            return host
+
+        last_two = ".".join(parts[-2:])
+        if last_two in MULTI_PART_TLDS and len(parts) >= 3:
+            return ".".join(parts[-3:])
+
         if len(parts) >= 2:
             return ".".join(parts[-2:])
         return host
